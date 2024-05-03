@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'geist';
+    src: url('/static/fonts/GeistMonoVF.ttf') format('truetype');
+}
+
+body {
+    font-family: 'geist';
+}
