@@ -2,15 +2,17 @@ use actix_files::Files;
 use actix_web::{web, App, HttpServer};
 
 pub mod pages;
-
-fn get_app_scope() -> actix_web::Scope {
-    web::scope("/static").service(Files::new("", "./src/public"))
-}
+pub mod util;
 
 #[ruxt::main]
 async fn main() -> std::io::Result<()> {
-    HttpServer::new(|| App::new().service(get_app_scope()))
-        .bind(("0.0.0.0", 8080))?
-        .run()
-        .await
+    let tera = tera::Tera::new("src/templates/**/*").unwrap();
+    HttpServer::new(|| {
+        App::new()
+            .app_data(web::Data::new(tera.clone()))
+            .service(Files::new("/static", "./src/public"))
+    })
+    .bind(("0.0.0.0", 8080))?
+    .run()
+    .await
 }

@@ -1,0 +1,21 @@
+{% extends "docs.html" %}
+{% block content %}
+<section class="flex flex-col gap-6 w-full">
+    <div class="flex flex-col gap-4">
+        <h2 class="text-3xl font-semibold">Introduction</h2>
+        <p class="text-sm">Welcome to the Ruxt.rs documentation!</p>
+    </div>
+</section>
+<div class="h-px bg-gray-300 w-full"></div>
+<section class="flex flex-col gap-6 w-full">
+    <div class="flex flex-col gap-4" id="what-is-ruxt">
+        <h2 class="text-2xl font-semibold">What is Ruxt.rs?</h2>
+        <p>Ruxt.rs is an Actix-based Rust framework for building HTMX sites. It allows you to build
+            dynamic web applications using Rust and HTMX, a modern approach to building web applications that
+            leverages the power of server-side rendering and the simplicity of HTML.</p>
+        <p>The goal of Ruxt.rs is to provide a simple, easy-to-use framework for building web applications
+            that are fast, secure, and maintainable. It is designed to be lightweight and flexible, allowing
+            you to build web applications that meet your specific needs.</p>
+    </div>
+</section>
+{% endblock %}

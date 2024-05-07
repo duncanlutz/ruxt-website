@@ -1,0 +1,18 @@
+{% import "components/codeblock.html" as codeblock %}
+{% extends "docs.html" %}
+{% block content %}
+<section class="flex flex-col gap-6 w-full">
+    <div class="flex flex-col gap-4">
+        <h2 class="text-2xl font-bold">Commands</h2>
+        <p>Once you've created a new project, move into the project directory and run the following command
+            to start the development server:</p>
+        {{ codeblock::codeblock(code="cargo run", id="run-project") }}
+    </div>
+    <div class="flex flex-col gap-4">
+        <p>You may also want to install the <a class="text-blue-500" href="https://crates.io/crates/cargo-watch"
+                target="_blank">cargo-watch</a> crate to
+            automatically reload the server when you make changes. You can install it by running:</p>
+        {{ codeblock::codeblock(code="cargo install cargo-watch", id="install-watch") }}
+    </div>
+</section>
+{% endblock %}

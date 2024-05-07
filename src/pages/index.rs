@@ -1,6 +1,6 @@
-use actix_web::{web, HttpResponse};
+use actix_web::HttpResponse;
 
-pub async fn page() -> Result<HttpResponse, actix_web::Error> {
+pub async fn get() -> Result<HttpResponse, actix_web::Error> {
     let tera = tera::Tera::new("src/templates/**/*").unwrap();
     let ctx = tera::Context::new();
 
@@ -8,5 +8,6 @@ pub async fn page() -> Result<HttpResponse, actix_web::Error> {
         eprintln!("Error rendering template: {}", e);
         actix_web::error::ErrorInternalServerError("Error rendering template")
     })?;
+
     Ok(HttpResponse::Ok().body(rendered))
 }

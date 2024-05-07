@@ -1,0 +1,26 @@
+{% extends "docs.html" %}
+{% block content %}
+<section class="flex flex-col gap-6 w-full">
+    <div class="flex flex-col gap-4">
+        <h2 class="text-2xl font-bold">Accessing the Path</h2>
+        <p>Under the hood, Ruxt.rs uses the Actix web framework to handle requests. This means that you can access the
+            path of the current request using the <code>Path</code> struct from Actix.</p>
+        <p>Here's an example of how you can access the path of the current request:</p>
+        <div class="bg-black p-4 rounded-md flex flex-col w-full justify-start items-start text-white font-mono">
+            <code class="block w-full min-h-2">
+                <div class="w-full">use actix_web::web::Path;</div>
+                <div class="w-full">use serde::Deserialize;</div>
+                <br>
+                <div class="w-full">#[derive(Deserialize)]</div>
+                <div class="w-full">struct TestPath {</div>
+                <div class="w-full">&nbsp;&nbsp;&nbsp;&nbsp;id: i32</div>
+                <div class="w-full">}</div>
+                <br>
+                <div class="w-full">async fn index(path: Path&lt;TestPath&gt;) -> String {</div>
+                <div class="w-full">&nbsp;&nbsp;&nbsp;&nbsp;format!("The id is: {}", path.id)</div>
+                <div class="w-full">}</div>
+            </code>
+        </div>
+    </div>
+</section>
+{% endblock %}

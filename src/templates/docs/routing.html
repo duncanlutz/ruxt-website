@@ -1,0 +1,33 @@
+{% extends "docs.html" %}
+{% block content %}
+<section class="flex flex-col gap-6 w-full">
+    <div class="flex flex-col gap-4">
+        <h2 class="text-2xl font-bold">Creating Routes</h2>
+            <p>
+            Ruxt.rs uses a file-based routing system. This means that the file structure of your project will determine the routes of your application.
+            </p>
+            <p>
+            Each folder in the <code>src/pages</code> directory maps to a route segment in your application.
+            </p>
+        <p>
+            They follow the following rules:
+        <ul class="list-inside flex flex-col gap-4">
+            <li class="list-disc">An <code>index.rs</code> file in a folder will be the route for that
+                folder. (e.g.
+                <code>src/pages/about/index.rs</code> will be the route <code>/about</code>)
+            </li>
+            <li class="list-disc">A <code>page_name.rs</code> file in a folder will be the route for that
+                file. (e.g.
+                <code>src/pages/about.rs</code> will be the route <code>/about</code>)
+            </li>
+            <li class="list-disc">Files that begin with two underscores (e.g.
+                <code>src/pages/__layout.rs</code>) denote a
+                dynamic path segment. (e.g. <code>/user/{id}</code>)
+                You can
+                <a class="text-blue-500 hover:text-blue-300" href="/docs/dynamic_paths">learn how to access these values here</a>.
+            </li>
+        </ul>
+        </p>
+    </div>
+</section>
+{% endblock %}

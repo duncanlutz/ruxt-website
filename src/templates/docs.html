@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ruxt.rs | Documentation</title>
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles/output.css">
+</head>
+
+<body class="max-h-screen">
+
+    <style>
+        .copied #copy-icon {
+            opacity: 0;
+        }
+
+        .copied #confirm-icon {
+            opacity: 1;
+        }
+
+        #copy-icon {
+            opacity: 1;
+        }
+
+        #confirm-icon {
+            opacity: 0;
+        }
+
+        .sidebar {
+            min-height: calc(100vh - 4rem);
+            max-height: 100vh;
+        }
+    </style>
+
+    <header>
+        <nav class="flex justify-start gap-6 py-6 px-10 border border-b-gray-300 z-50">
+            <a href="/" class="font-bold hover:text-gray-400 transition-colors">Ruxt.rs</a>
+            <a href="/docs" class="hover:text-gray-400 transition-colors">Documentation</a>
+        </nav>
+    </header>
+
+    <main class="w-full flex justify-center max-h-screen pt-10">
+        <div class="sidebar flex flex-col justify-between w-2/12 p-4 px-8 gap-2 overflow-y-scroll" id="side-nav">
+            <div class="w-full flex flex-col gap-2">
+                {% for link in page.links %}
+                <a href="{{ link.route }}"
+                    class="{% if page.name == link.title %}text-blue-500 hover:text-blue-300{% else %}hover:text-gray-400{% endif %} transition-colors">{{
+                    link.title }}</a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="w-1/2 flex flex-col items-center px-4 gap-10 overflow-y-scroll">
+            {% block content %}
+            {% endblock %}
+            <div class="flex justify-between w-full gap-4">
+                {% if prev_page %}
+                <a href="{{ prev_page.route }}" class="flex items-end group gap-1">
+                    <div class="flex flex-col justify-end pb-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor"
+                            class="w-4 h-4 group-hover:-translate-x-0.5 transition-transform duration-200">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col items-start gap-1 justify-end">
+                        <span class="text-sm text-gray-500 group-hover:text-gray-800 transition-colors duration-200">
+                            Previous
+                        </span>
+                        <span>
+                            {{ prev_page.title}}
+                        </span>
+                    </div>
+                </a>
+                {% else %}
+                <div></div>
+                {% endif %}
+
+                {% if next_page %}
+                <a href="{{ next_page.route }}" class="flex flex-col items-start group">
+                    <span
+                        class="text-sm text-gray-500 group-hover:text-gray-800 transition-colors duration-200">Next</span>
+                    <div class="flex items-center gap-1">
+                        <span>
+                            {{ next_page.title}}
+                        </span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor"
+                            class="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-200">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                        </svg>
+                    </div>
+                </a>
+                {% else %}
+                <div></div>
+                {% endif %}
+            </div>
+        </div>
+    </main>
+
+    <footer class="p-8 text-center">
+        <p>Created by <a href="https://twitter.com/duncanthedev" class="text-blue-500 hover:text-blue-300 transition-colors">Duncan Lutz</a></p>
+    </footer>
+
+    <script>
+        function copyToClipboard(id, stringToCopy) {
+            const el = document.getElementById(id);
+
+            navigator.clipboard.writeText(stringToCopy).then(() => {
+                el.classList.add('copied');
+                setTimeout(() => {
+                    el.classList.remove('copied');
+                }, 1000);
+            });
+        }
+    </script>
+
+</body>
+
+</html>
